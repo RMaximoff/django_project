@@ -1,0 +1,28 @@
+[
+  {
+    "model": "catalog.product",
+    "pk": 1,
+    "fields": {
+      "name": "Product 1",
+      "description": "Description 1",
+      "preview": "images/product1.jpg",
+      "category": 1,
+      "price": 10,
+      "created_at": "2022-01-01T10:00:00Z",
+      "updated_at": "2022-01-01T12:00:00Z"
+    }
+  },
+  {
+    "model": "catalog.product",
+    "pk": 2,
+    "fields": {
+      "name": "Product 2",
+      "description": "Description 2",
+      "preview": "images/product2.jpg",
+      "category": 2,
+      "price": 20,
+      "created_at": "2022-01-02T11:00:00Z",
+      "updated_at": "2022-01-02T13:00:00Z"
+    }
+  }
+]
