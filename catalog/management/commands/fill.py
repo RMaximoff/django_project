@@ -8,8 +8,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
 
-        category1 = Category().objects.get()
-
         Category.objects.all().delete()
         Product.objects.all().delete()
 
