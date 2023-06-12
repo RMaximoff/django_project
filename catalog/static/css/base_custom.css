@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Bellota+Text:wght@300&display=swap');
+
+body {
+    background: #222022;
+}
+
+header {
+    background: #4c4947;
+    width: 100%;
+    height: 100px;
+}
+
+div .main_header {
+    font-family: 'Bellota Text', cursive;;
+    font-size: 35px;
+    color: white;
+    text-align: center;
+    margin-left: 5px;
+    margin-top: 5px;
+    max-width: 150px;
+    float: left;
+}
+
+nav .p-2.btn.btn-outline-primary {
+    color: white;
+    margin-top: 1.5rem;
+    margin-left: 1rem;
+}
+
+nav a .p-2 btn btn-outline-primary {
+    color: #0dcaf0;
+}
+
+.pricing-header h1, .pricing-header p {
+    color: white;
+    margin-top: -10px
+}
+
+footer h5{
+    color: white;
+}
+
+.d-block small {
+    color: white;
+}
