@@ -3,8 +3,8 @@
     "model": "catalog.category",
     "pk": 1,
     "fields": {
-      "name": "Category 1",
-      "description": "Description 1",
+      "name": "Браслеты",
+      "description": "тут должно быть описание, но мне лень",
       "created_at": "2022-01-01T10:00:00Z"
     }
   },
@@ -12,8 +12,8 @@
     "model": "catalog.category",
     "pk": 2,
     "fields": {
-      "name": "Category 2",
-      "description": "Description 2",
+      "name": "Наручные часы",
+      "description": "тут должно быть описание, но мне лень",
       "created_at": "2022-01-02T11:00:00Z"
     }
   }

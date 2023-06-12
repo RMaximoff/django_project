@@ -3,11 +3,12 @@
     "model": "catalog.product",
     "pk": 1,
     "fields": {
-      "name": "Product 1",
-      "description": "Description 1",
-      "preview": "images/product1.jpg",
+      "name": "Браслет Man Power",
+      "description": "Браслет дает +10 ко всем статам. Резист на энергетические атаки. И конечно же дарит своему обладателю силу земли.",
+
+      "preview": "img/man_power.png",
       "category": 1,
-      "price": 10,
+      "price": 50000,
       "created_at": "2022-01-01T10:00:00Z",
       "updated_at": "2022-01-01T12:00:00Z"
     }
@@ -16,11 +17,11 @@
     "model": "catalog.product",
     "pk": 2,
     "fields": {
-      "name": "Product 2",
-      "description": "Description 2",
-      "preview": "images/product2.jpg",
+      "name": "Наручные часы MONTANA",
+      "description": "Легендарные наручные часы. Доставочка прямиком из 90-х. Если ты хочешь ощутить себя самым крутым на районе, бери, даже не раздумывай",
+      "preview": "img/montana.png",
       "category": 2,
-      "price": 20,
+      "price": 100500,
       "created_at": "2022-01-02T11:00:00Z",
       "updated_at": "2022-01-02T13:00:00Z"
     }
