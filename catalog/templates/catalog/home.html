@@ -1,5 +1,6 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
+{% load catalog_tags %}
 
 <div class="container">
     <div class="row text-center">
@@ -11,7 +12,7 @@
                           <h4 class="my-0 font-weight-normal">{{ el.name }}</h4>
                         </div>
                         <div class="card-body">
-                            <img src="{{ el.preview.url }}" alt="Превью картинки" style="max-width: 100%;">
+                            <img src="{{ el.preview|mediapath }}" alt="Превью картинки" style="max-width: 100%;">
                             <h1 class="card-title pricing-card-title">{{ el.price }} денег</h1>
                             <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                                 <p>{{ el.description|slice:":50" }}...</p>
