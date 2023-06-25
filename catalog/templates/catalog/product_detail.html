@@ -7,13 +7,13 @@
         <div class="col-xxl-50">
             <div class="card mb-4 box-shadow">
                 <div class="card-header d-flex align-items-center justify-content-center" style="height: 100px">
-                  <h4 class="my-0 font-weight-normal">{{ data.name }}</h4>
+                  <h4 class="my-0 font-weight-normal">{{ object.name }}</h4>
                 </div>
                 <div class="card-body">
-                    <img src="{{ data.preview|mediapath }}" alt="Превью картинки" style="max-width: 100%; width: 600px; height: 600px">
-                    <h1 class="card-title pricing-card-title">{{ data.price }} денег</h1>
+                    <img src="{{ object.preview|mediapath }}" alt="Превью картинки" style="max-width: 100%; width: 600px; height: 600px">
+                    <h1 class="card-title pricing-card-title">{{ object.price }} денег</h1>
                     <ul class="list-unstyled mt-3 mb-4 text-start m-3">
-                        <p class="text-center">{{ data.description }}</p>
+                        <p class="text-center">{{ object.description }}</p>
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                 </div>
