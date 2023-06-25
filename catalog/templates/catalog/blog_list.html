@@ -1,0 +1,33 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+{% load catalog_tags %}
+
+<div class="container">
+    <div class="row text-center">
+        <a href="/blog/create/" class="btn btn-lg btn-block btn-outline-primary">Создать новую запись</a>
+        {% for el in object_list %}
+            <div class="col-3 mt-4">
+                <a href="/blog/{{el.slug}}" style="text-decoration: none; color: black">
+                    <div class="card mb-4 box-shadow">
+                        <div class="card-header d-flex align-items-center justify-content-center" style="height: 100px">
+                          <h4 class="my-0 font-weight-normal">{{ el.title }}</h4>
+                        </div>
+                        <div class="card-body">
+                            <img src="{{ el.image|mediapath }}" alt="Превью картинки" style="max-width: 100%;">
+                            <ul class="list-unstyled mt-3 mb-4 text-start m-3">
+                                <p>{% if el.content|length <= 50 %}
+                                        <li>{{ el.content }}</li>
+                                    {% else %}
+                                        <li>{{ el.content|slice:":50" }}...</li>
+                                    {% endif %}
+                                </p>
+                            </ul>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
