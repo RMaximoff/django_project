@@ -1,17 +1,17 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from catalog.models import Product
+from django.views import generic
 
 
-def home(request):
-    data = Product.objects.all()
-    return render(request, 'catalog/home.html', {'data': data})
+class ProductsListView(generic.ListView):
+    model = Product
 
 
-def contact(request):
-    return render(request, 'catalog/contacts.html')
+class ContactView(generic.TemplateView):
+    template_name = 'catalog/contacts.html'
 
 
-def product(request, product_id):
-    data = Product.objects.get(id=product_id)
-    return render(request, 'catalog/product.html', {'data': data})
+class ProductDetailView(generic.DetailView):
+    model = Product
+
