@@ -1,0 +1,66 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+<style>
+.card {
+    background-color: #222022;
+}
+form {
+    color: white;
+}
+form input[type="text"],
+form textarea {
+    width: 100%;
+}
+</style>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+            <div class="card mb-4 box-shadow">
+                <div class="card-body">
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="{{ form.name.id_for_label }}">Название товара</label>
+                            {{ form.name }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.description.id_for_label }}">Описание товара</label>
+                            {{ form.description }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.preview.id_for_label }}">Фото товара</label>
+                            {{ form.preview }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.category.id_for_label }}">Категория</label>
+                            {{ form.category }}
+                        </div>
+                        <div class="form-group">
+                            <label for="{{ form.price.id_for_label }}">Цена</label>
+                            {{ form.price }}
+                        </div>
+                        {{ form.versions.management_form }}
+                        {% for version_form in form.versions %}
+                            <div class="card mb-3">
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="{{ version_form.version_name.id_for_label }}">Версия</label>
+                                        {{ version_form.version_name }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+
+                        <button type="submit" class="btn btn-primary">Сохранить</button>
+                        <a href="{% url 'product_list' %}" class="btn btn-primary">Назад</a>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

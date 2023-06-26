@@ -1,6 +1,6 @@
 import json
 from django.core.management import BaseCommand
-from catalog.models import Category, Product
+from catalog.models import Category, Product, Version
 from django.db import connection
 
 
@@ -10,10 +10,12 @@ class Command(BaseCommand):
 
         Category.objects.all().delete()
         Product.objects.all().delete()
+        Version.objects.all().delete()
 
         with connection.cursor() as cursor:
             cursor.execute("ALTER SEQUENCE catalog_category_id_seq RESTART WITH 1;")
             cursor.execute("ALTER SEQUENCE catalog_product_id_seq RESTART WITH 1;")
+            cursor.execute("ALTER SEQUENCE catalog_version_id_seq RESTART WITH 1;")
 
         with open('category.json', 'r', encoding='utf-8') as file:
             categories = json.load(file)
@@ -35,4 +37,15 @@ class Command(BaseCommand):
                 product_instance = Product(**product_fields)
                 products_for_create.append(product_instance)
             Product.objects.bulk_create(products_for_create)
+
+        with open('version.json', 'r', encoding='utf-8') as file:
+            versions = json.load(file)
+
+            versions_for_create = []
+            for version_data in versions:
+                version_fields = version_data['fields']
+                version_fields['product'] = Product.objects.get(pk=version_fields['product'])
+                version_instance = Version(**version_fields)
+                versions_for_create.append(version_instance)
+            Version.objects.bulk_create(versions_for_create)
 

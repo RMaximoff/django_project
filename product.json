@@ -6,7 +6,7 @@
       "name": "Браслет Man Power",
       "description": "Браслет дает +10 ко всем статам. Резист на энергетические атаки. И конечно же дарит своему обладателю силу земли.",
 
-      "preview": "img/man_power.png",
+      "preview": "product/man_power.png",
       "category": 1,
       "price": 50000,
       "created_at": "2022-01-01T10:00:00Z",
@@ -19,11 +19,12 @@
     "fields": {
       "name": "Наручные часы MONTANA",
       "description": "Легендарные наручные часы. Доставочка прямиком из 90-х. Если ты хочешь ощутить себя самым крутым на районе, бери, даже не раздумывай",
-      "preview": "img/montana.png",
+      "preview": "product/montana.png",
       "category": 2,
       "price": 100500,
       "created_at": "2022-01-02T11:00:00Z",
-      "updated_at": "2022-01-02T13:00:00Z"
+      "updated_at": "2022-01-02T13:00:00Z",
+      "is_published": true
     }
   }
 ]
