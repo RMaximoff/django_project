@@ -4,8 +4,9 @@
 
 <div class="container">
     <div class="row text-center">
+    <a href="/product/create/" class="btn btn-lg btn-block btn-outline-primary">Добавить новый продукт</a>
         {% for el in object_list %}
-            <div class="col-3">
+            <div class="col-3 mt-4">
                 <a href="/product/{{ el.id }}" style="text-decoration: none; color: black">
                     <div class="card mb-4 box-shadow">
                         <div class="card-header d-flex align-items-center justify-content-center" style="height: 100px">
@@ -17,6 +18,11 @@
                             <ul class="list-unstyled mt-3 mb-4 text-start m-3">
                                 <p>{{ el.description|slice:":50" }}...</p>
                             </ul>
+                            {% for version in active_versions %}
+                                    {% if version.product == el %}
+                                        <p>{{ version.version_name}}</p>
+                                    {% endif %}
+                            {% endfor %}
                             <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                         </div>
                     </div>

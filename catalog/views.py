@@ -1,21 +1,57 @@
-from django.shortcuts import render
-from django.http import HttpResponse
-from slugify import slugify
-from catalog.models import Product, Blog
+from catalog.models import Product, Blog, Version
 from django.views import generic
 from django.urls import reverse_lazy, reverse
-
-
-class ProductsListView(generic.ListView):
-    model = Product
+from catalog.forms import BlogForm, ProductForm
 
 
 class ContactView(generic.TemplateView):
     template_name = 'catalog/contacts.html'
 
 
+class ProductsListView(generic.ListView):
+    model = Product
+    context_object_name = 'products'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(is_published=True)
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        active_versions = Version.objects.filter(is_current=True).select_related('product')
+        context['active_versions'] = active_versions
+        return context
+
+
 class ProductDetailView(generic.DetailView):
     model = Product
+
+
+class ProductCreateView(generic.CreateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('product_list')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        return response
+
+
+class ProductUpdateView(generic.UpdateView):
+    model = Product
+    form_class = ProductForm
+    success_url = reverse_lazy('product_list')
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        form.save_versions(self.object)
+        return response
+
+
+class ProductDeleteView(generic.DeleteView):
+    model = Product
+    success_url = reverse_lazy('product_list')
 
 
 class BlogListView(generic.ListView):
@@ -40,7 +76,7 @@ class BlogDetailView(generic.DetailView):
 
 class BlogCreateView(generic.CreateView):
     model = Blog
-    fields = ('title', 'content', 'image')
+    form_class = BlogForm
     success_url = reverse_lazy('blog_list')
 
     def form_valid(self, form):
@@ -50,7 +86,7 @@ class BlogCreateView(generic.CreateView):
 
 class BlogUpdateView(generic.UpdateView):
     model = Blog
-    fields = ('title', 'content', 'image')
+    form_class = BlogForm
 
     def form_valid(self, form):
         response = super().form_valid(form)

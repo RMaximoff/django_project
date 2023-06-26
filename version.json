@@ -1,0 +1,32 @@
+[
+  {
+    "model": "catalog.version",
+    "pk": 1,
+    "fields": {
+      "product": 1,
+      "version_number": "1.0",
+      "version_name": "Первая версия",
+      "is_current": true
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 2,
+    "fields": {
+      "product": 1,
+      "version_number": "2.0",
+      "version_name": "Обновленная версия",
+      "is_current": false
+    }
+  },
+  {
+    "model": "catalog.version",
+    "pk": 3,
+    "fields": {
+      "product": 2,
+      "version_number": "1.5",
+      "version_name": "Премиум версия",
+      "is_current": true
+    }
+  }
+]
