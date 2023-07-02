@@ -3,6 +3,8 @@ from django.core.management import BaseCommand
 from catalog.models import Category, Product, Version
 from django.db import connection
 
+from users.models import User
+
 
 class Command(BaseCommand):
 
@@ -34,6 +36,9 @@ class Command(BaseCommand):
             for product_data in products:
                 product_fields = product_data['fields']
                 product_fields['category'] = Category.objects.get(pk=product_fields['category'])
+                user_id = product_fields.pop('user')  # Получаем и удаляем идентификатор пользователя
+                user = User.objects.get(id=user_id)  # Получаем экземпляр пользователя по идентификатору
+                product_fields['user'] = user
                 product_instance = Product(**product_fields)
                 products_for_create.append(product_instance)
             Product.objects.bulk_create(products_for_create)

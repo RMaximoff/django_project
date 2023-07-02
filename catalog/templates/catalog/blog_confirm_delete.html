@@ -23,7 +23,7 @@
                         {% csrf_token %}
                         Удаляем?
                         <input type='submit' class="btn btn-danger" value="Да">
-                        <a href="{% url 'blog_list' %}" class="btn btn-primary">Назад</a>
+                        <a href="{% url 'catalog:blog_list' %}" class="btn btn-primary">Назад</a>
                     </form>
                 </div>
             </div>

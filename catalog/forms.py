@@ -2,7 +2,7 @@ from django import forms
 from catalog.models import Blog, Product, Version
 from django.forms import formset_factory
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset
+from crispy_forms.layout import Layout, Field
 
 
 class BlogForm(forms.ModelForm):
@@ -15,11 +15,6 @@ class VersionForm(forms.ModelForm):
     class Meta:
         model = Version
         fields = ('version_name',)
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
-        self.helper = FormHelper()
-        self.helper.layout = Layout(Field('version_name', css_class='form-control'))
 
 
 class ProductForm(forms.ModelForm):

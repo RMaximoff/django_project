@@ -4,7 +4,9 @@
 
 <div class="container">
     <div class="row text-center">
-    <a href="/product/create/" class="btn btn-lg btn-block btn-outline-primary">Добавить новый продукт</a>
+    {% if user.is_authenticated %}
+        <a href="/product/create/" class="btn btn-lg btn-block btn-outline-primary">Добавить новый продукт</a>
+    {% endif %}
         {% for el in object_list %}
             <div class="col-3 mt-4">
                 <a href="/product/{{ el.id }}" style="text-decoration: none; color: black">

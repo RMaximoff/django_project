@@ -1,0 +1,31 @@
+{% extends 'catalog/base.html' %}
+{% block content %}
+
+    <style>
+    .card {
+        background-color: #222022;
+    }
+    form {
+        color: white;
+    }
+    form input[type="text"],
+    form textarea {
+        width: 100%;
+    }
+    </style>
+
+    <div class="container">
+        <div class="row text-center">
+            <div class="card-body">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit" class="btn btn-primary">Войти</button>
+                    <a href="{% url 'users:reset_password' %}" class="btn btn-primary">Сбросить пароль</a>
+                    <a href="{% url 'catalog:product_list' %}" class="btn btn-primary">Назад</a>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
