@@ -1,6 +1,6 @@
 {% extends 'catalog/base.html' %}
 {% block content %}
-{% load crispy_forms_tags %}
+
 
 <style>
 .card {
@@ -42,20 +42,14 @@ form textarea {
                             <label for="{{ form.price.id_for_label }}">Цена</label>
                             {{ form.price }}
                         </div>
-                        {{ form.versions.management_form }}
-                        {% for version_form in form.versions %}
-                            <div class="card mb-3">
-                                <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="{{ version_form.version_name.id_for_label }}">Версия</label>
-                                        {{ version_form.version_name }}
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                        {{ formset.management_form }}
+                        {% for form in formset.forms %}
+                            {{ form.as_p }}
                         {% endfor %}
-
+                        </div>
                         <button type="submit" class="btn btn-primary">Сохранить</button>
-                        <a href="{% url 'product_list' %}" class="btn btn-primary">Назад</a>
+                        <a href="{% url 'catalog:product_list' %}" class="btn btn-primary">Назад</a>
                     </form>
                 </div>
             </div>
