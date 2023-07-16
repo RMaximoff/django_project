@@ -1,3 +1,5 @@
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+
 from catalog.models import Product, Blog, Version
 from django.views import generic
 from django.urls import reverse_lazy, reverse
@@ -29,7 +31,7 @@ class ProductDetailView(generic.DetailView):
     model = Product
 
 
-class ProductCreateView(generic.CreateView):
+class ProductCreateView(LoginRequiredMixin, generic.CreateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_list')
@@ -54,10 +56,13 @@ class ProductCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class ProductUpdateView(generic.UpdateView):
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, generic.UpdateView):
     model = Product
     form_class = ProductForm
     success_url = reverse_lazy('catalog:product_list')
+
+    def test_func(self):
+        return self.request.user == self.get_object().user
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)
@@ -79,9 +84,12 @@ class ProductUpdateView(generic.UpdateView):
         return super().form_valid(form)
 
 
-class ProductDeleteView(generic.DeleteView):
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, generic.DeleteView):
     model = Product
     success_url = reverse_lazy('catalog:product_list')
+
+    def test_func(self):
+        return self.request.user == self.get_object().user
 
 
 class BlogListView(generic.ListView):
