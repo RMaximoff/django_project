@@ -17,8 +17,12 @@
                     </ul>
                     <button type="button" class="btn btn-lg btn-block btn-outline-primary">Купить</button>
                     {% if user.is_authenticated %}
-                        <a href="{% url 'catalog:product_update' pk=object.pk %}" class="btn btn-primary">Редактировать</a>
-                        <a href="{% url 'catalog:product_delete' pk=object.pk %}" class="btn btn-primary">Удалить</a>
+                        {% if perms.catalog.product_update %}
+                            <a href="{% url 'catalog:product_update' pk=object.pk %}" class="btn btn-primary">Редактировать</a>
+                        {% endif %}
+                        {% if perms.catalog.product_delete %}
+                            <a href="{% url 'catalog:product_delete' pk=object.pk %}" class="btn btn-primary">Удалить</a>
+                        {% endif %}
                     {% endif %}
                 </div>
             </div>
