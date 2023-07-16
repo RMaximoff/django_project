@@ -1,4 +1,6 @@
 from django.urls import path
+from django.views.decorators.cache import cache_page
+
 from . import views
 from django.conf import settings
 from django.conf.urls.static import static
@@ -7,7 +9,7 @@ app_name = 'catalog'
 
 
 urlpatterns = [
-    path('', views.ProductsListView.as_view(), name='product_list'),
+    path('', cache_page(60)(views.ProductsListView.as_view()), name='product_list'),
     path('contact/', views.ContactView.as_view(), name='contact'),
     path('product/create/', views.ProductCreateView.as_view(), name='product_create'),
     path('product/<int:pk>/', views.ProductDetailView.as_view(), name='product_page'),
